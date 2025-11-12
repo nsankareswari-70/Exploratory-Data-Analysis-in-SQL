@@ -47,3 +47,25 @@ Importing tables to the database
 select * from SqlDataExplore.dbo.CovidDeaths order by 3,4
 select * from SqlDataExplore.dbo.CovidVaccination order by 3,4
 ```
+
+```
+select location,date,total_cases,new_cases,total_deaths,population from 
+SqlDataExplore.dbo.CovidDeaths
+order by 1,2
+
+-- Death Percentage
+select location,date,total_cases,total_deaths,(total_deaths/total_cases)*100 as Deathpercentage from
+SqlDataExplore.dbo.CovidDeaths
+order by 1,2
+-- Death Percentage in US
+select location,date,total_cases,total_deaths,(total_deaths/total_cases)*100 as Deathpercentage from
+SqlDataExplore.dbo.CovidDeaths where location like '%states%'
+order by 1,2
+
+
+-- Total cases Vs Population (What percentage of population got Covid)
+select location, date, population, total_cases, (total_cases/population)*100 as covidpop
+from SqlDataExplore.dbo.CovidDeaths where location like '%states%'
+order by 1,2
+```
+
