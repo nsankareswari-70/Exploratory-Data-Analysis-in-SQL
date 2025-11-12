@@ -36,15 +36,14 @@ Expected Outcomes:
 
 A comprehensive understanding of how COVID-19 spread across different regions.
 
-Importing tables to the database
-`sql
-select * from SqlDataExplore.dbo.CovidDeaths order by 3,4
-select * from SqlDataExplore.dbo.CovidVaccination order by 3,4
-`sql
-
-
 Insights into how vaccination efforts affected the pandemic’s trajectory.
 
 Identification of global and regional disparities in vaccination and mortality rates.
 
 Well-documented findings to support public health analysis and decision-making.
+
+Importing tables to the database
+`<sql>
+select * from SqlDataExplore.dbo.CovidDeaths order by 3,4
+select * from SqlDataExplore.dbo.CovidVaccination order by 3,4
+`<sql>
