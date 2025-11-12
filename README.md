@@ -68,4 +68,44 @@ select location, date, population, total_cases, (total_cases/population)*100 as 
 from SqlDataExplore.dbo.CovidDeaths where location like '%states%'
 order by 1,2
 ```
+```
+--  Countries with Highest Infection Rate compared to population
+SELECT 
+    location,
+    population,
+    MAX(total_cases) AS highest_total_cases,
+    MAX((total_cases / population) * 100) AS infection_rate_percent
+FROM 
+    SqlDataExplore.dbo.CovidDeaths
+WHERE 
+    continent IS NOT NULL  -- optional: exclude continents/aggregates
+GROUP BY 
+    location, population
+ORDER BY 
+    infection_rate_percent DESC;
+
+-- Countries with Highest Death count per population
+select location,max(cast(total_deaths as int)) as maxdeathct
+from SqlDataExplore.dbo.CovidDeaths 
+where continent is not null
+group by location
+order by maxdeathct desc
+
+-- Total Death count per continent
+
+select continent,max(cast(total_deaths as int)) as TotalDeathcount
+from SqlDataExplore.dbo.CovidDeaths 
+where continent is not null
+group by continent
+order by TotalDeathcount desc
+
+-- Total Death count by location
+select location, max(cast(total_deaths as int)) as TotalDeathcount
+from SqlDataExplore.dbo.CovidDeaths
+where continent is null
+group by location
+order by TotalDeathcount desc
+```
+
+
 
