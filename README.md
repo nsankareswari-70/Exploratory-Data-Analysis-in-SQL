@@ -31,3 +31,13 @@ Track vaccination progress globally and per country.
 Identify correlations between vaccination rates and reduction in new cases/deaths.
 
 Highlight countries with the fastest and slowest vaccination rollouts.
+
+Expected Outcomes:
+
+A comprehensive understanding of how COVID-19 spread across different regions.
+
+Insights into how vaccination efforts affected the pandemic’s trajectory.
+
+Identification of global and regional disparities in vaccination and mortality rates.
+
+Well-documented findings to support public health analysis and decision-making.
