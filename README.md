@@ -108,6 +108,58 @@ where continent is null
 group by location
 order by TotalDeathcount desc
 ```
+```sql
+-- Total new cases by date
+select date,sum(new_cases) as Totnewcases
+from SqlDataExplore.dbo.CovidDeaths
+where continent is not null
+group by date order by date desc
 
+
+-- New case and New Deaths percentage
+select date, sum(new_cases) as Totnewcases,
+sum(cast(new_deaths as int)) as Totnewdeaths, 
+sum(cast(new_deaths as int)) /sum(new_cases )*100 as Newdeathpercentage
+from SqlDataExplore.dbo.CovidDeaths
+where continent is not null
+group by date order by date desc
+
+
+-- Join two tables
+select * from SqlDataExplore.dbo.CovidDeaths dea
+join SqlDataExplore.dbo.Covidvaccination vac on
+dea.location = vac.location
+and dea.date = vac.date
+
+
+-- Total population vs vaccinations
+select dea.continent, dea.location,dea.date,dea.population,vac.new_vaccinations,
+sum(convert(int,vac.new_vaccinations)) over (partition by dea.location order by dea.location,dea.date)
+as Rollingtotvaccinated
+from SqlDataExplore.dbo.Covidvaccination vac join SqlDataExplore.dbo.CovidDeaths dea on
+dea.location = vac.location
+and dea.date=vac.date
+where dea.continent is not null
+order by 2,3
+
+
+--Rolling population vs vaccinated percentage
+with popvsvac(continent,location,date,population,new_vaccinations,Rollingtotvaccinated)as
+(select dea.continent, dea.location,dea.date,dea.population,vac.new_vaccinations,
+sum(convert(int,vac.new_vaccinations)) over (partition by dea.location order by dea.location,dea.date)
+as Rollingtotvaccinated
+from SqlDataExplore.dbo.Covidvaccination vac join SqlDataExplore.dbo.CovidDeaths dea on
+dea.location = vac.location
+and dea.date=vac.date
+where dea.continent is not null
+--order by 2,3
+)
+select *
+from popvsvac;
+
+
+create view asiacon1 as 
+select continent,population from SqlDataExplore.dbo.CovidDeaths where continent='Asia';
+```
 
 
