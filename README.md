@@ -6,6 +6,8 @@ This project aims to perform an Exploratory Data Analysis (EDA) on two datasets 
 
 The CovidDeaths dataset contains information on COVID-19 cases, deaths, population, and related statistics across countries and dates, while the CovidVaccination dataset includes data on vaccination progress, such as total vaccinations, people vaccinated, and vaccination rates.
 
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
+
 ### Objectives:
 
 Data Understanding and Cleaning:
@@ -43,12 +45,12 @@ Identification of global and regional disparities in vaccination and mortality r
 Well-documented findings to support public health analysis and decision-making.
 
 Importing tables to the database
-```
+```sql
 select * from SqlDataExplore.dbo.CovidDeaths order by 3,4
 select * from SqlDataExplore.dbo.CovidVaccination order by 3,4
 ```
 
-```
+```sql
 select location,date,total_cases,new_cases,total_deaths,population from 
 SqlDataExplore.dbo.CovidDeaths
 order by 1,2
@@ -68,7 +70,7 @@ select location, date, population, total_cases, (total_cases/population)*100 as 
 from SqlDataExplore.dbo.CovidDeaths where location like '%states%'
 order by 1,2
 ```
-```
+```sql
 --  Countries with Highest Infection Rate compared to population
 SELECT 
     location,
